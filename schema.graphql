@@ -1,4 +1,4 @@
-type ExampleEntity @entity {
+type DnsName @entity {
   id: String!
   name: String!
 }
