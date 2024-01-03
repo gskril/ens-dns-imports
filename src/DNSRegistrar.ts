@@ -5,7 +5,8 @@ ponder.on('DNSRegistrar:Claim', async ({ event, context }) => {
   const { dnsname: encodedName } = event.params
 
   const buffer = Buffer.from(encodedName.split('0x')[1], 'hex')
-  const name = buffer.toString('utf8')
+  const _name = buffer.toString('utf8').replace(/[\x01-\x20]/g, '.')
+  const name = _name.slice(1, _name.length - 1)
 
   await DnsName.upsert({
     id: encodedName,
