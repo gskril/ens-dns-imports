@@ -8,9 +8,11 @@ ponder.on('DNSRegistrar:Claim', async ({ event, context }) => {
   const _name = buffer.toString('utf8').replace(/[\x01-\x20]/g, '.')
   const name = _name.slice(1, _name.length - 1)
 
+  const createdAt = Number(event.block.timestamp)
+
   await DnsName.upsert({
     id: encodedName,
-    create: { name },
+    create: { name, createdAt },
     update: { name },
   })
 })
@@ -23,9 +25,11 @@ ponder.on('DNSRegistrarOld:Claim', async ({ event, context }) => {
   const _name = buffer.toString('utf8').replace(/[\x01-\x20]/g, '.')
   const name = _name.slice(1, _name.length - 1)
 
+  const createdAt = Number(event.block.timestamp)
+
   await DnsName.upsert({
     id: encodedName,
-    create: { name },
+    create: { name, createdAt },
     update: { name },
   })
 })
