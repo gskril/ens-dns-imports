@@ -1,8 +1,8 @@
 import { ponder } from '@/generated'
 
 ponder.on('DNSRegistrar:Claim', async ({ event, context }) => {
-  const { DnsName } = context.entities
-  const { dnsname: encodedName } = event.params
+  const { DnsName } = context.db
+  const { dnsname: encodedName } = event.args
 
   const buffer = Buffer.from(encodedName.split('0x')[1], 'hex')
   const _name = buffer.toString('utf8').replace(/[\x01-\x20]/g, '.')
@@ -18,8 +18,8 @@ ponder.on('DNSRegistrar:Claim', async ({ event, context }) => {
 })
 
 ponder.on('DNSRegistrarOld:Claim', async ({ event, context }) => {
-  const { DnsName } = context.entities
-  const { dnsname: encodedName } = event.params
+  const { DnsName } = context.db
+  const { dnsname: encodedName } = event.args
 
   const buffer = Buffer.from(encodedName.split('0x')[1], 'hex')
   const _name = buffer.toString('utf8').replace(/[\x01-\x20]/g, '.')

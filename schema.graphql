@@ -1,5 +1,0 @@
-type DnsName @entity {
-  id: String!
-  name: String!
-  createdAt: Int!
-}

@@ -6,12 +6,9 @@
     "codegen": "ponder codegen"
   },
   "dependencies": {
-    "@ponder/core": "latest"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.18",
-    "abitype": "^0.8.11",
-    "typescript": "^5.1.3",
-    "viem": "^1.2.6"
+    "@ponder/core": "^0.1.2",
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3",
+    "viem": "^1.21.4"
   }
 }

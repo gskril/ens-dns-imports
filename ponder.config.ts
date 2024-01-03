@@ -1,23 +1,27 @@
-import type { PonderConfig } from '@ponder/core'
+import { createConfig } from '@ponder/core'
+import { http } from 'viem'
+import { DNSRegistrarAbi } from './abis/DNSRegistrar'
 
-export const config: PonderConfig = {
-  networks: [
-    { name: 'mainnet', chainId: 1, rpcUrl: process.env.PONDER_RPC_URL_1 },
-  ],
-  contracts: [
-    {
-      name: 'DNSRegistrar',
+export default createConfig({
+  networks: {
+    mainnet: {
+      chainId: 1,
+      transport: http(process.env.PONDER_RPC_URL_1),
+      maxHistoricalTaskConcurrency: 1,
+    },
+  },
+  contracts: {
+    DNSRegistrar: {
       network: 'mainnet',
-      abi: './abis/DNSRegistrar.json',
+      abi: DNSRegistrarAbi,
       address: '0x58774Bb8acD458A640aF0B88238369A167546ef2',
       startBlock: 13040372,
     },
-    {
-      name: 'DNSRegistrarOld',
+    DNSRegistrarOld: {
       network: 'mainnet',
-      abi: './abis/DNSRegistrar.json',
+      abi: DNSRegistrarAbi,
       address: '0xa2F428617a523837d4adC81C67a296d42FD95e86',
       startBlock: 9380528,
     },
-  ],
-}
+  },
+})
